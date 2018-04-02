@@ -6,6 +6,7 @@ namespace LoanPaymentCalculator
 
     public class Calculator
     {
+        private const int Round = 2;
         public static Payment Calulate(double amount, double interest, double downPayment, int term)
         {
             Guard.ArgumentIsGreaterThan(() => amount, 0);
@@ -20,24 +21,25 @@ namespace LoanPaymentCalculator
             }
 
             double body = amount - downPayment;
-            double monthlyInterest = interest / 12f;
+            
             double monthlyPaiment;
-            if (Math.Abs(monthlyInterest) < Double.Epsilon)
+            if (interest > 0)
             {
-                monthlyPaiment = body / term;
+                double monthlyInterest = interest / 12f;
+                monthlyPaiment = body * monthlyInterest / (1 - Math.Pow(1 + monthlyInterest, -term));
             }
             else
             {
-                monthlyPaiment = body * monthlyInterest / (1 - Math.Pow(1 + monthlyInterest, -term));
+                monthlyPaiment = body / term;
             }
 
             var totalPayment = monthlyPaiment * term;
 
             return new Payment()
             {
-                MonthlyPaiment = Math.Round(monthlyPaiment, 2 ),
-                TotalPayment = Math.Round(totalPayment, 2),
-                TotalInterest = Math.Round(totalPayment - body, 2)
+                MonthlyPaiment = Math.Round(monthlyPaiment, Round),
+                TotalPayment = Math.Round(totalPayment, Round),
+                TotalInterest = Math.Round(totalPayment - body, Round)
             };
         }
     }
