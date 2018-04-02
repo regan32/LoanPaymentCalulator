@@ -21,7 +21,16 @@ namespace LoanPaymentCalculator
 
             double body = amount - downPayment;
             double monthlyInterest = interest / 12f;
-            var monthlyPaiment = body * monthlyInterest / (1 - Math.Pow(1 + monthlyInterest, -term));
+            double monthlyPaiment;
+            if (Math.Abs(monthlyInterest) < 0.001)
+            {
+                monthlyPaiment = body / term;
+            }
+            else
+            {
+                monthlyPaiment = body * monthlyInterest / (1 - Math.Pow(1 + monthlyInterest, -term));
+            }
+
             var totalPayment = monthlyPaiment * term;
 
             return new Payment()

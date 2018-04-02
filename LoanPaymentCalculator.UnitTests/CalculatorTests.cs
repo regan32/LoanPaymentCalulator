@@ -21,6 +21,8 @@
         [TestCase(1000, 0.2, 0, 12, 92.63)] //No downpayment
         [TestCase(100000, 0.055, 20000, 360, 454.23)] // with downpayment
         [TestCase(100000, 0.055, 100000, 360, 0)]// downpayment is equal to amount :)
+        [TestCase(100000, 0, 0, 10, 10000)]// zero interest
+        [TestCase(100000, 0.1, 0, 1, 100833.33)]// Minimal term
         public void CalculateMonthlyPayment_ShouldBeOk(double amount, double interest, double downPayment, int term, double expected)
         {
             var payment = Calculator.Calulate(amount, interest, downPayment, term);
