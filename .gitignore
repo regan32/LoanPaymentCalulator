@@ -4,3 +4,4 @@ LoanPaymentCalculator.UnitTests/obj/
 LoanPaymentCalculator/bin/
 LoanPaymentCalculator/obj/
 packages/
+*.user

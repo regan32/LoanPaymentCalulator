@@ -4,7 +4,7 @@
     <StartArguments>
 ```
 amount: 100000
-interest: 5.5%25
+interest: 0.055
 downpayment: 20000
 term: 30
 
