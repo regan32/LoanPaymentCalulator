@@ -22,7 +22,7 @@ namespace LoanPaymentCalculator
             double body = amount - downPayment;
             double monthlyInterest = interest / 12f;
             double monthlyPaiment;
-            if (Math.Abs(monthlyInterest) < 0.001)
+            if (Math.Abs(monthlyInterest) < Double.Epsilon)
             {
                 monthlyPaiment = body / term;
             }
